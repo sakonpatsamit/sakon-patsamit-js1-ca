@@ -1,0 +1,24 @@
+.digimons {
+  display: flex;
+  flex-direction: column;
+}
+
+.digimon {
+  margin: auto;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.digimonz {
+  display: flex;
+}
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  padding: 20px;
+}
