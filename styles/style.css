@@ -23,13 +23,10 @@
   text-align: center;
 }
 
-nav {
-  display: block;
-  background-color: transparent;
-  position: relative;
-  text-decoration: none;
+ul {
+  display: flex;
+  justify-content: space-around;
 }
-
 form {
   background-color: white;
   padding: 2rem;
@@ -56,18 +53,10 @@ form input {
 button {
   padding: 0.75rem 1rem;
   border-radius: 3px;
-  background-color: rgb(13, 158, 44);
+  background-color: blue;
   color: white;
   border: none;
   max-width: 150px;
   transition: 0.2s ease;
-}
-
-button:hover {
-  background-color: rgb(10, 102, 30);
-  cursor: pointer;
-}
-
-.error {
-  color: crimson;
+  font-size: larger;
 }
