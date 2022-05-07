@@ -22,7 +22,9 @@ function digimonList(digimons) {
     return;
   }
 
-  digimons.forEach((digimon) => {
+  for (let i = 0; i < digimons.length; i++) {
+    const digimon = digimons[i];
+
     const container = document.createElement("a");
     container.href = `details.html?name=${digimon.name}`;
     container.className = "digimon";
@@ -38,9 +40,7 @@ function digimonList(digimons) {
 
     container.append(name, image, level);
     digimonsFace.append(container);
-  });
-
-  console.log(digimons);
+  }
 }
 
 getDigimons().then((digimons) => {

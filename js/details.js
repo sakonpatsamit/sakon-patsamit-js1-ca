@@ -1,11 +1,14 @@
 const url = "https://digimon-api.vercel.app/api";
 
 const digimonsFace = document.querySelector(".digimonz");
+const title = document.querySelector("title");
 
 const params = new URLSearchParams(document.location.search);
 const digimonName = params.get("name");
 
 async function getDigimons() {
+  if (!digimonName) return null;
+
   try {
     const response = await fetch(url + `/digimon/name/${digimonName}`);
     const json = await response.json();
@@ -20,13 +23,18 @@ async function getDigimons() {
 function digimonList(digimon) {
   if (!digimon) {
     const error = document.createElement("h1");
-    error.innerText = `Oops! Something went wrong`;
+    error.innerText = digimonName
+      ? `Oops! Something went wrong`
+      : "Please select a digimon from the home page";
+
     digimonsFace.append(error);
     return;
   }
 
-  const container = document.createElement("div");
-  container.className = "digimon";
+  title.innerText = digimon.name;
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "digimon";
 
   const name = document.createElement("h3");
   name.innerText = digimon.name;
@@ -37,12 +45,8 @@ function digimonList(digimon) {
   const level = document.createElement("h4");
   level.innerText = digimon.level;
 
-  container.append(name, image, level);
-  digimonsFace.append(container);
-
-  console.log(digimon);
+  wrapper.append(name, image, level);
+  digimonsFace.append(wrapper);
 }
 
-getDigimons().then((digimons) => {
-  digimonList(digimons);
-});
+getDigimons().then((digimons) => digimonList(digimons));

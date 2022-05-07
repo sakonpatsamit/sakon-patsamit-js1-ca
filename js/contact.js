@@ -1,43 +1,38 @@
-const contactForm = document.querySelector("form");
+const form = document.querySelector("form");
 
 const name = document.querySelector("#name");
-const nameError = document.querySelector("#nameError");
 const subject = document.querySelector("#subject");
-const subjectError = document.querySelector("#subjectError");
 const email = document.querySelector("#email");
-const emailError = document.querySelector("#emailError");
 const address = document.querySelector("#address");
-const addressError = document.querySelector("#addressError");
 
-const emailPattern = "/S+@S+.S+/";
+const errorName = document.querySelector("#errorName");
+const errorSubject = document.querySelector("#errorSubject");
+const errorEmail = document.querySelector("#errorEmail");
+const errorAddress = document.querySelector("#errorAddress");
 
-contactForm.addEventListener("submit", (e) => {
+const emailPattern = /\S+@\S+\.\S+/;
+
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  nameError.innerText = "";
-  subjectError.innerText = "";
-  emailError.innerText = "";
-  addressError.innerText = "";
-
-  let error = false;
+  errorName.innerText = "";
+  errorSubject.innerText = "";
+  errorEmail.innerText = "";
+  errorAddress.innerText = "";
 
   if (name.value == "") {
-    error = true;
-    nameError.innerText = "Write a name";
+    errorName.innerText = "Write a name";
   }
 
-  if (!subject.value || subject.value.length < 10) {
-    error = true;
-    subjectError.innerText = "Less than 10 characters not allowed";
+  if (subject.value.length < 10) {
+    errorSubject.innerText = "Less than 10 characters not allowed";
   }
 
-  if (email.value == "" || emailPattern.test(email.value)) {
-    error = true;
-    emailError.innerText = "Provide email-address";
+  if (!emailPattern.test(email.value)) {
+    errorEmail.innerText = "Provide email-address";
   }
 
-  if (!address.value || address.value.length < 25) {
-    error = true;
-    addressError.innerText = "Address must be atleast 25 characters";
+  if (address.value.length < 25) {
+    errorAddress.innerText = "Address must be atleast 25 characters";
   }
 });
